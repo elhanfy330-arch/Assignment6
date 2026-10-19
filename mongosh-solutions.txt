@@ -1,0 +1,69 @@
+1 -- db.createCollection("books" , { validator : { $and : [
+  { title : { $type : "string" , $exists : true } } 
+] } })
+
+2 -- db.authors.insertOne({
+    name: "Author1",
+    nationality: "British"
+})
+
+3 -- db.createCollection("logs" , {capped : true , size : 1024*1024})
+
+4 -- db.books.createIndex({title : 1})
+
+5 -- db.books.insertOne({title : "Book1" ,
+   author : "Ali" , 
+   year : 1937 , 
+   genres : ["Fantasy" , "Adventure"]
+  })
+
+6 -- db.books.insertMany([ {
+        title: "Clean Code",
+        author: "Robert C. Martin",
+        year: 2008,
+        genres: ["Programming", "Software Engineering"]
+    },
+    {
+        title: "The Hobbit",
+        author: "J.R.R. Tolkien",
+        year: 1937,
+        genres: ["Fantasy", "Adventure"]
+    },
+    {
+        title: "Brave New World",
+        author: "Aldous Huxley",
+        year: 1932,
+        genres: ["Science Fiction", "Dystopian"]
+    }
+  ])
+
+7 -- db.logs.insertOne({bookId : "6acfc4ce9e8419a7ae77c959" , action : "Borrowed"})
+
+8 -- db.books.updateOne({ title : "Future" }, { $set : {year : 2022} } )
+
+9 -- db.books.findOne( { title : "Brave New World" } )
+
+10 -- db.books.find( { year : { $gte : 1990 , $lte : 2010 } } )
+
+11 -- db.books.find( { genres : "Science Fiction" } )
+
+12 -- db.books.find().sort({year : -1}).skip(2).limit(3)
+
+13 -- db.books.find({ year: { $type: "int" } })
+
+14 -- db.books.find( { genres : {$nin : ["Science Fiction" , "Horror"]} } )
+
+15 -- db.books.deleteMany( { year : { $lt : 2000 } } )
+
+16 -- db.books.aggregate([
+    { $match: { year: { $gt: 2000 } } },
+    { $sort: { year: -1 } }
+])
+
+17 -- db.books.aggregate( [ 
+    { $match : { year : {$gt : 2000} } } ,
+    { $project : { genres : 0 , _id : 0 } } ] )
+
+18 -- db.books.aggregate([{ $unwind : "$genres" }])
+
+19 -- 

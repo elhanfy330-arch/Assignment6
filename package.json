@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "cross-env": "^10.1.0",
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "mongodb": "^7.7.0"
+  },
+  "name": "assignment6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start:dev" : "cross-env NODE_ENV=development node --watch src/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
