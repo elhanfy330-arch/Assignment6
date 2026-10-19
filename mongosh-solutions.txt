@@ -66,4 +66,19 @@
 
 18 -- db.books.aggregate([{ $unwind : "$genres" }])
 
-19 -- 
+19 -- 19 -- db.logs.aggregate([
+    { $addFields : { bookId : { $toObjectId : "$bookId" } } },
+    { $lookup : {
+        from : "books",
+        localField : "bookId",
+        foreignField : "_id",
+        as : "book_details"
+    } },
+    { $project : {
+        _id : 0,
+        action : 1,
+        "book_details.title" : 1,
+        "book_details.author" : 1,
+        "book_details.year" : 1
+    } }
+])
